@@ -22,6 +22,13 @@ function ReadJSONData() {
     }
 }
 
+app.get("/", (req, res) => {
+    return res.send({
+        success: true,
+        message: "Hallo, Selamat Datang"
+    });
+})
+
 app.post("/getdata", (req, res) => {
     const { token } = req.body;
     if (token === TOKEN) {
