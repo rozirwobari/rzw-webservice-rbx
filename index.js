@@ -8,7 +8,7 @@ const TOKEN = "ypYW5fimv55hwEjLCc0dWahkc00eMZE88aDhjUgvzcwH4sJGXOThAvomEwQlVfAe"
 
 function ReadJSONData() {
     let dataDefault = {
-        donation: {}
+        donation: []
     }
     try {
         if (!fs.existsSync(JSON_FILE)) {
