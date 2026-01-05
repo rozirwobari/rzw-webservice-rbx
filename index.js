@@ -27,7 +27,7 @@ function SaveDataJSON(data) {
     var getDataJSON = ReadJSONData()
     getDataJSON.donation.push(data)
     try {
-        fs.writeFileSync(JSON_FILE, getDataJSON);
+        fs.writeFileSync(JSON_FILE, JSON.stringify(getDataJSON, null, 2));
         console.log('✅ File berhasil disimpan');
         return true, "✅ File berhasil disimpan";
     } catch (error) {
