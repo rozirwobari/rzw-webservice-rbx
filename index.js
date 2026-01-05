@@ -80,5 +80,6 @@ app.post("/setdonation", (req, res) => {
 })
 
 app.listen(PORT, () => {
+    ReadJSONData();
     console.log(`Server Berjalan Di Port ${PORT}`);
 })
