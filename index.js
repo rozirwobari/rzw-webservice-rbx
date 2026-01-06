@@ -36,18 +36,39 @@ function SaveDataJSON(data) {
     }
 }
 
+function setDefault() {
+    let dataDefault = {
+        donation: []
+    }
+    try {
+        fs.writeFileSync(JSON_FILE, JSON.stringify(dataDefault, null, 2));
+        console.log('✅ File Berhasil Direset');
+        return true, "✅ File Berhasil Direset";
+    } catch (error) {
+        console.error('❌ Gagal Direset:', error.message);
+        return false, error.message;
+    }
+}
+
 app.get("/", (req, res) => {
     return res.send({
         success: true,
-        message: "Hallo, Selamat Datang"
+        message: "[RZW Project] Hallo, Selamat Datang"
     });
 })
 
-app.post("/getdata", (req, res) => {
+app.post("/getdonate", (req, res) => {
     const { token } = req.body;
     if (token === TOKEN) {
         var data = ReadJSONData();
-        return res.send(data);
+        if (data.donation[0]) {
+            res.send(data.donation[0]);
+            data.donation.splice(0, 1);
+            SaveDataJSON(data)
+            return true;
+        }
+        res.send([]);
+        return true;
     }
     return res.send({
         success: false,
