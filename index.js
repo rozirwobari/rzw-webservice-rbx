@@ -36,16 +36,13 @@ function SaveDataJSON(data) {
     }
 }
 
-function setDefault() {
-    let dataDefault = {
-        donation: []
-    }
+function setData(data) {
     try {
-        fs.writeFileSync(JSON_FILE, JSON.stringify(dataDefault, null, 2));
-        console.log('✅ File Berhasil Direset');
-        return true, "✅ File Berhasil Direset";
+        fs.writeFileSync(JSON_FILE, JSON.stringify(data, null, 2));
+        console.log('✅ File berhasil disimpan');
+        return true, "✅ File berhasil disimpan";
     } catch (error) {
-        console.error('❌ Gagal Direset:', error.message);
+        console.error('❌ Gagal menyimpan:', error.message);
         return false, error.message;
     }
 }
@@ -63,8 +60,8 @@ app.post("/getdonate", (req, res) => {
         var data = ReadJSONData();
         if (data.donation[0]) {
             res.send(data.donation[0]);
-            data.donation.splice(0, 1);
-            SaveDataJSON(data)
+            data.donation.shift();
+            setData(data)
             return true;
         }
         res.send([]);
