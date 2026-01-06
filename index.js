@@ -39,10 +39,10 @@ function SaveDataJSON(data) {
 function setData(data) {
     try {
         fs.writeFileSync(JSON_FILE, JSON.stringify(data, null, 2));
-        console.log('✅ File berhasil disimpan');
-        return true, "✅ File berhasil disimpan";
+        console.log('✅ Berhasil setData');
+        return true, "✅ Berhasil setData";
     } catch (error) {
-        console.error('❌ Gagal menyimpan:', error.message);
+        console.error('❌ Gagal setData:', error.message);
         return false, error.message;
     }
 }
